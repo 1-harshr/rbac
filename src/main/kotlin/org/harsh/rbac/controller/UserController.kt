@@ -1,6 +1,7 @@
 package org.harsh.rbac.controller
 
 import org.harsh.rbac.dto.UserDto
+import org.harsh.rbac.exception.UserNotFound
 import org.harsh.rbac.service.UserService
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -28,7 +29,7 @@ class UserController(
         return if (user != null) {
             ResponseEntity(user, HttpStatus.OK)
         } else {
-            ResponseEntity.notFound().build()
+            throw UserNotFound()
         }
     }
 

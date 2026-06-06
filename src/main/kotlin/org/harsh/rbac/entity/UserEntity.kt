@@ -22,7 +22,8 @@ class UsersEntity {
     var name: String? = null
 
     @Embedded
-    var userType: UserType = UserType.USER
+    @NotNull
+    var userType: UserType? = UserType.USER
 
 }
 
