@@ -24,13 +24,9 @@ class UserController(
     fun getUser(
         @PathVariable userId: Long,
     ): ResponseEntity<UserDto> {
-        val user: UserDto? = userService.getUserById(userId)
+        val user: UserDto = userService.getUserById(userId)
+        return ResponseEntity(user, HttpStatus.OK)
 
-        return if (user != null) {
-            ResponseEntity(user, HttpStatus.OK)
-        } else {
-            throw UserNotFound()
-        }
     }
 
     @PostMapping("/create")

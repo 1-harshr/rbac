@@ -17,7 +17,7 @@ class GlobalExceptionAdvice {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(
             ErrorDto(
                 errorCode = HttpStatus.NOT_FOUND.value(),
-                errorMessage = "User not found"
+                errorMessage = "User ${exception.id} not found"
             )
         )
     }
@@ -27,7 +27,7 @@ class GlobalExceptionAdvice {
         return ResponseEntity.status(HttpStatus.CONFLICT).body(
             ErrorDto(
                 errorCode = HttpStatus.CONFLICT.value(),
-                errorMessage = "Cannot create user. User already exists"
+                errorMessage = "Cannot create user ${exception.name}. User already exists"
             )
         )
     }
