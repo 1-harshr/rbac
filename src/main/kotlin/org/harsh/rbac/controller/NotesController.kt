@@ -1,18 +1,10 @@
 package org.harsh.rbac.controller
 
 import org.harsh.rbac.dto.NotesDto
-import org.harsh.rbac.mapper.toNoteDto
 import org.harsh.rbac.service.NotesService
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
-import org.springframework.web.bind.annotation.DeleteMapping
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.PutMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RequestHeader
-
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 
 
 @RestController
@@ -21,7 +13,7 @@ class NotesController(
     private val notesService: NotesService
 ) {
 
-    @RequestMapping
+    @GetMapping
     fun getNotes(
         @RequestHeader("userId") userId: Long,
     ): ResponseEntity<List<NotesDto>> {

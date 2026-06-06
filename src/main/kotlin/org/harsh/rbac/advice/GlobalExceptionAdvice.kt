@@ -35,9 +35,9 @@ class GlobalExceptionAdvice {
 
     @ExceptionHandler(NoteNotFound::class)
     fun handleNoteNotFound(exception: NoteNotFound) : ResponseEntity<ErrorDto> {
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(
             ErrorDto(
-                errorCode = HttpStatus.BAD_REQUEST.value(),
+                errorCode = HttpStatus.NOT_FOUND.value(),
                 errorMessage = "Note for this id not found for this user"
             )
         )
