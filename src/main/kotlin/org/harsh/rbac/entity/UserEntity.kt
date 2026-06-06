@@ -8,7 +8,6 @@ import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
 import jakarta.persistence.Table
 import org.jetbrains.annotations.NotNull
-import java.util.UUID
 
 
 @Entity
@@ -16,7 +15,7 @@ import java.util.UUID
 class UsersEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    var id: UUID = UUID.randomUUID()
+    var id: Long? = 0L
 
     @NotNull
     @Column(unique = true)

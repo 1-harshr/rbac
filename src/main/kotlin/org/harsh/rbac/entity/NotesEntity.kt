@@ -13,7 +13,6 @@ class NotesEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long = 0
-    @ManyToOne(fetch = FetchType.LAZY)
     var ownerId: String? = null
     var title: String = ""
     var content: String = ""
