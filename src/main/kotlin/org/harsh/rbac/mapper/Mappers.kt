@@ -1,7 +1,7 @@
 package org.harsh.rbac.mapper
 
 import org.harsh.rbac.dto.NotesDto
-import org.harsh.rbac.dto.NotesEntity
+import org.harsh.rbac.entity.NotesEntity
 
 
 fun NotesDto.toNoteEntity() = NotesEntity(

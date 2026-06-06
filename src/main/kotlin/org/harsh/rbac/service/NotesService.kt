@@ -1,7 +1,7 @@
 package org.harsh.rbac.service
 
 import org.harsh.rbac.dto.NotesDto
-import org.harsh.rbac.dto.NotesEntity
+import org.harsh.rbac.entity.NotesEntity
 import org.harsh.rbac.mapper.toNoteDto
 import org.harsh.rbac.mapper.toNoteEntity
 import org.harsh.rbac.repo.NotesRepository

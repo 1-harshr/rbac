@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("/api/v1/notes")
-class NotesController constructor(
+class NotesController(
     private val notesService: NotesService
 ) {
 

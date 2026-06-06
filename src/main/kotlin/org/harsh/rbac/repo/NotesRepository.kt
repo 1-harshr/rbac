@@ -1,6 +1,6 @@
 package org.harsh.rbac.repo
 
-import org.harsh.rbac.dto.NotesEntity
+import org.harsh.rbac.entity.NotesEntity
 import org.springframework.data.jpa.repository.JpaRepository
 
 

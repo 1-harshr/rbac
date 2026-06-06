@@ -20,17 +20,20 @@ repositories {
 }
 
 dependencies {
-    implementation("org.springframework.boot:spring-boot-starter-security")
+//    implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("org.springframework.boot:spring-boot-starter-webmvc")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("tools.jackson.module:jackson-module-kotlin")
-    testImplementation("org.springframework.boot:spring-boot-starter-security-test")
+//    testImplementation("org.springframework.boot:spring-boot-starter-security-test")
     testImplementation("org.springframework.boot:spring-boot-starter-webmvc-test")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 
+    // Database access layer
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-    runtimeOnly("org.postgresql:postgresql")
+
+    // H2 Database (use 'runtimeOnly' or 'developmentOnly' to keep it out of production builds)
+    runtimeOnly("com.h2database:h2")
 }
 
 kotlin {
