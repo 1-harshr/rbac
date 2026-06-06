@@ -1,13 +1,11 @@
 package org.harsh.rbac.service
 
 import org.harsh.rbac.dto.UserDto
-import org.harsh.rbac.entity.UsersEntity
 import org.harsh.rbac.mapper.toDto
 import org.harsh.rbac.mapper.toEntity
 import org.harsh.rbac.repo.UserRepo
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
-import java.util.UUID
 
 
 @Service
