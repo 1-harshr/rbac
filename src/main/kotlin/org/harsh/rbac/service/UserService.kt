@@ -16,8 +16,9 @@ class UserService(
     private val userRepo: UserRepo
 ) {
     fun getUserById(userId: Long): UserDto {
-        return userRepo.findByIdOrNull(userId)?.toDto()?: throw UserNotFound().apply { this.id = userId }
+        return userRepo.findByIdOrNull(userId)?.toDto() ?: throw UserNotFound().apply { this.id = userId }
     }
+
     fun createUser(userDto: UserDto): UserDto {
         try {
             val user = userRepo.save(userDto.toEntity()).toDto()

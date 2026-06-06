@@ -1,29 +1,43 @@
 package org.harsh.rbac.service
 
+import jakarta.transaction.Transactional
 import org.harsh.rbac.dto.NotesDto
-import org.harsh.rbac.entity.NotesEntity
+import org.harsh.rbac.exception.NoteNotFound
+import org.harsh.rbac.exception.UserNotFound
 import org.harsh.rbac.mapper.toNoteDto
 import org.harsh.rbac.mapper.toNoteEntity
 import org.harsh.rbac.repo.NotesRepository
-import org.springframework.http.ResponseEntity
+import org.harsh.rbac.repo.UserRepo
 import org.springframework.stereotype.Service
 
 @Service
-class NotesService(private val notesRepository: NotesRepository) {
+class NotesService(
+    private val notesRepository: NotesRepository,
+    private val userRepo: UserRepo
+) {
 
-    fun getNotes(): List<NotesEntity> = notesRepository.findAll()
+    fun getNotes(userId: Long): List<NotesDto> {
+        val userNotes = notesRepository.findByOwnerId(userId)
+        return userNotes.map { it.toNoteDto() }
+    }
 
-    fun postNote(note: NotesDto) : NotesDto {
-        val entity = note.toNoteEntity()
+    fun postNote(userId: Long, note: NotesDto) : NotesDto {
+        val user = userRepo.findById(userId).orElseThrow{ UserNotFound(userId) }
+        val entity = note.toNoteEntity(user)
         return notesRepository.save(entity).toNoteDto()
     }
 
-    fun deleteNotes(id: Long) = notesRepository.deleteById(id)
+    fun deleteNotes(userId: Long, id: Long) = notesRepository.deleteById(id)
 
-    fun editNote(id : Long, note: NotesDto) : NotesDto {
-        val entity = note.toNoteEntity()
-        return notesRepository.save(entity).toNoteDto()
+
+    @Transactional
+    fun editNote(userId: Long, notesId : Long, note: NotesDto) : NotesDto {
+        userRepo.findById(userId).orElseThrow{ UserNotFound(userId) }
+
+        val userNoteEntity = notesRepository.findById(notesId).orElseThrow{ NoteNotFound() }
+        userNoteEntity.title = note.title
+        userNoteEntity.content = note.content
+
+        return userNoteEntity.toNoteDto()
     }
-
-
 }
