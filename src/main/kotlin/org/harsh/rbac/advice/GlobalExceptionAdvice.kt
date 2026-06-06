@@ -1,6 +1,7 @@
 package org.harsh.rbac.advice
 
 import org.harsh.rbac.dto.ErrorDto
+import org.harsh.rbac.exception.NoteNotFound
 import org.harsh.rbac.exception.UserAlreadyExists
 import org.harsh.rbac.exception.UserNotFound
 import org.springframework.http.HttpStatus
@@ -28,6 +29,16 @@ class GlobalExceptionAdvice {
             ErrorDto(
                 errorCode = HttpStatus.CONFLICT.value(),
                 errorMessage = "Cannot create user ${exception.name}. User already exists"
+            )
+        )
+    }
+
+    @ExceptionHandler(NoteNotFound::class)
+    fun handleNoteNotFound(exception: NoteNotFound) : ResponseEntity<ErrorDto> {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
+            ErrorDto(
+                errorCode = HttpStatus.BAD_REQUEST.value(),
+                errorMessage = "Note for this id not found for this user"
             )
         )
     }
