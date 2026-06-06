@@ -1,5 +1,6 @@
 package org.harsh.rbac.controller
 
+import jakarta.validation.Valid
 import org.harsh.rbac.dto.NotesDto
 import org.harsh.rbac.service.NotesService
 import org.springframework.http.HttpStatus
@@ -23,7 +24,7 @@ class NotesController(
     @PostMapping
     fun postNotes(
         @RequestHeader("userId") userId: Long,
-        @RequestBody note: NotesDto
+        @Valid @RequestBody note: NotesDto
     ): ResponseEntity<NotesDto> {
         return ResponseEntity.status(HttpStatus.CREATED).body(
             notesService.postNote(userId, note)
@@ -33,7 +34,7 @@ class NotesController(
     @DeleteMapping
     fun deleteNote(
         @RequestHeader("userId") userId: Long,
-        @RequestBody note: NotesDto
+        @Valid @RequestBody note: NotesDto
     ): ResponseEntity<Unit> {
         return ResponseEntity.status(HttpStatus.NO_CONTENT).body(
             notesService.deleteNotes(userId, note.id)
@@ -43,7 +44,7 @@ class NotesController(
     @PutMapping
     fun updateNote(
         @RequestHeader("userId") userId: Long,
-        @RequestBody note: NotesDto
+        @Valid @RequestBody note: NotesDto
     ): ResponseEntity<NotesDto> {
         return ResponseEntity.status(HttpStatus.OK).body(
             notesService.editNote(notesId = note.id, userId = userId, note = note)
