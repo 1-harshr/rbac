@@ -5,6 +5,9 @@ import org.harsh.rbac.mapper.toNoteDto
 import org.harsh.rbac.service.NotesService
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
+import org.springframework.web.bind.annotation.DeleteMapping
+import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.PutMapping
 import org.springframework.web.bind.annotation.RequestBody
 
 import org.springframework.web.bind.annotation.RequestMapping
@@ -17,8 +20,10 @@ class NotesController constructor(
     private val notesService: NotesService
 ) {
 
+    @RequestMapping
     fun getNotes(): ResponseEntity<List<NotesDto>> = ResponseEntity.ok(notesService.getNotes().map { it.toNoteDto() })
 
+    @PostMapping
     fun postNotes(
         @RequestBody note: NotesDto
     ): ResponseEntity<NotesDto> {
@@ -27,6 +32,7 @@ class NotesController constructor(
         )
     }
 
+    @DeleteMapping
     fun deleteNote(
         @RequestBody note: NotesDto
     ): ResponseEntity<Unit> {
@@ -35,6 +41,7 @@ class NotesController constructor(
         )
     }
 
+    @PutMapping
     fun updateNote(
         @RequestBody note: NotesDto
     ): ResponseEntity<NotesDto> {
