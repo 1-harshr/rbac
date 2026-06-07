@@ -18,12 +18,11 @@ class UsersEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long? = 0L
 
-    @NotNull
-    @Column(unique = true)
+    @Column(unique = true,nullable = false)
     var name: String? = null
 
     @Enumerated(EnumType.STRING)
-    @NotNull
+    @Column(nullable = false)
     var userType: UserType? = UserType.USER
 
 }

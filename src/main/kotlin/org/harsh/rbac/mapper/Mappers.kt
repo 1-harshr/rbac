@@ -3,6 +3,7 @@ package org.harsh.rbac.mapper
 import org.harsh.rbac.dto.NotesDto
 import org.harsh.rbac.dto.UserDto
 import org.harsh.rbac.entity.NotesEntity
+import org.harsh.rbac.entity.UserType
 import org.harsh.rbac.entity.UsersEntity
 import java.time.ZoneOffset
 
@@ -35,6 +36,6 @@ fun UserDto.toEntity() : UsersEntity {
     val entity =  UsersEntity()
     entity.id = this.id
     entity.name = this.name
-    entity.userType = this.role
+    entity.userType = this.role ?: UserType.USER
     return entity
 }
